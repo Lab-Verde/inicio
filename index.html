@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LABVERDE · Começando com o Claude</title>
+<style>
+  :root{
+    --preto:#000000;
+    --verde:#BADA55;
+    --branco:#FFFFFF;
+    --superficie:#111111;
+    --superficie-2:#1A1A1A;
+    --borda:#2A2A2A;
+    --texto:rgba(255,255,255,0.78);
+    --texto-fraco:rgba(255,255,255,0.45);
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    background:var(--preto);
+    color:var(--texto);
+    font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size:17px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:760px;margin:0 auto;padding:0 20px 80px}
+  header{padding:56px 0 28px;border-bottom:1px solid var(--borda)}
+  .marca{
+    font-size:13px;letter-spacing:.35em;text-transform:uppercase;
+    color:var(--verde);font-weight:700;margin:0 0 18px
+  }
+  h1{
+    font-size:34px;line-height:1.15;margin:0 0 14px;color:var(--branco);
+    text-transform:uppercase;letter-spacing:.02em;font-weight:700
+  }
+  .sub{margin:0;color:var(--texto-fraco);font-size:16px}
+  .tempo{
+    display:inline-block;margin-top:22px;padding:7px 14px;border:1px solid var(--borda);
+    color:var(--texto-fraco);font-size:13px;text-transform:uppercase;letter-spacing:.12em
+  }
+  h2{
+    display:flex;align-items:baseline;gap:14px;
+    font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:var(--verde);
+    margin:0 0 18px;font-weight:700
+  }
+  h2 .n{
+    flex:none;width:30px;height:30px;border:1px solid var(--verde);border-radius:50%;
+    display:inline-flex;align-items:center;justify-content:center;font-size:14px;letter-spacing:0
+  }
+  section{padding:38px 0;border-bottom:1px solid var(--borda)}
+  section:last-of-type{border-bottom:none}
+  h3{font-size:18px;color:var(--branco);margin:26px 0 8px;font-weight:700}
+  p{margin:0 0 14px}
+  ol,ul{margin:0 0 14px;padding-left:22px}
+  li{margin-bottom:9px}
+  a{color:var(--verde);text-decoration:none;border-bottom:1px solid rgba(186,218,85,.35)}
+  a:hover{border-bottom-color:var(--verde)}
+  strong{color:var(--branco);font-weight:700}
+  .nota{
+    background:var(--superficie);border-left:2px solid var(--verde);
+    padding:16px 18px;margin:18px 0;font-size:15px
+  }
+  .atencao{border-left-color:#E8B84B}
+  .frase{
+    background:var(--superficie-2);border:1px solid var(--borda);
+    padding:18px;margin:18px 0;font-size:15px;line-height:1.5;
+    word-break:break-word;color:var(--branco)
+  }
+  button{
+    margin-top:14px;background:none;border:1px solid var(--verde);color:var(--verde);
+    font-family:inherit;font-size:12px;letter-spacing:.14em;text-transform:uppercase;
+    font-weight:700;padding:10px 16px;cursor:pointer
+  }
+  button:hover{background:var(--verde);color:var(--preto)}
+  .checklist{list-style:none;padding:0}
+  .checklist li{
+    border:1px solid var(--borda);padding:14px 16px;margin-bottom:10px;background:var(--superficie)
+  }
+  .checklist .rot{
+    display:block;font-size:12px;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--verde);margin-bottom:4px;font-weight:700
+  }
+  footer{padding:34px 0;color:var(--texto-fraco);font-size:14px}
+  @media (max-width:600px){
+    body{font-size:16px}
+    h1{font-size:27px}
+    header{padding:40px 0 22px}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <p class="marca">LABVERDE</p>
+  <h1>Começando a trabalhar com o Claude</h1>
+  <p class="sub">Um ambiente onde o Claude cuida de editais, conteúdo e propostas seguindo as regras da LabVerde. Este guia prepara o seu computador.</p>
+  <span class="tempo">4 passos seus · cerca de 20 minutos</span>
+</header>
+
+<section>
+  <h2><span class="n">1</span> Conta no GitHub</h2>
+  <p><strong>Comece por aqui.</strong> É onde o ambiente fica guardado, e sem esse acesso nada é baixado. Você não vai precisar mexer nele depois: quem cuida é o Claude.</p>
+  <ol>
+    <li>Entre em <a href="https://github.com/signup">github.com/signup</a> e crie a conta com o seu e-mail de trabalho.</li>
+    <li>Escolha um nome de usuário simples, como <em>tammy-labverde</em>.</li>
+    <li>Confirme o e-mail que o GitHub envia.</li>
+    <li><strong>Mande o seu nome de usuário para o Rafael.</strong> Ele libera o seu acesso ao ambiente.</li>
+  </ol>
+  <div class="nota">Enquanto espera a liberação, siga para os passos 2, 3 e 4.</div>
+</section>
+
+<section>
+  <h2><span class="n">2</span> Conta e plano do Claude</h2>
+  <ol>
+    <li>Entre em <a href="https://claude.ai">claude.ai</a> e crie a conta com o e-mail de trabalho.</li>
+    <li>Clique no seu nome, embaixo à esquerda, e vá em <strong>Settings</strong> (Configurações) → <strong>Plans</strong> (Planos).</li>
+    <li>Escolha o plano <strong>Pro</strong>: cerca de US$ 20 por mês, ou US$ 17 por mês pagando o ano inteiro.</li>
+  </ol>
+  <div class="nota atencao">Combine com a Lilian quem paga a assinatura antes de fechar.</div>
+</section>
+
+<section>
+  <h2><span class="n">3</span> App do Claude no computador</h2>
+  <ol>
+    <li>Baixe em <a href="https://claude.ai/download">claude.ai/download</a> a versão para <strong>Mac</strong>.</li>
+    <li>Instale (arraste para a pasta Aplicativos) e entre com a mesma conta.</li>
+    <li>No topo do app existem abas. A que vamos usar chama-se <strong>Code</strong>.</li>
+  </ol>
+</section>
+
+<section>
+  <h2><span class="n">4</span> Dropbox e contas do trabalho</h2>
+  <ol>
+    <li>Se o <strong>Dropbox</strong> não estiver instalado, baixe em <a href="https://dropbox.com/install">dropbox.com/install</a> e entre com a conta da LabVerde.</li>
+    <li>Deixe as pastas da LabVerde sincronizando no computador. Pode demorar; é só deixar rodando.</li>
+    <li>Tenha as senhas à mão: <strong>Google</strong> (a do Drive da LabVerde), <strong>Dropbox</strong> e <strong>Trello</strong>. Se você não tiver conta no Trello, o Claude ajuda a criar na hora, e é gratuita.</li>
+  </ol>
+</section>
+
+<section>
+  <h2><span class="n">5</span> Agora é com o Claude</h2>
+  <p>Abra o app do Claude, vá na aba <strong>Code</strong> e, quando ele pedir uma pasta, escolha <strong>Documentos</strong>. Depois escreva na conversa exatamente esta frase:</p>
+  <div class="frase" id="frase">Leia este guia e siga as instruções: https://gist.githubusercontent.com/rcmarx/35f9fd12e53c9c41f479f232b7b97137/raw/INICIO.md</div>
+  <button onclick="copiar()" id="btn">Copiar a frase</button>
+  <p style="margin-top:22px">A partir daí ele conduz tudo: instala o que falta, conecta o Trello, o Google Drive e o Dropbox, pergunta onde ficam as pastas importantes e prepara o ambiente. São mais uns 30 minutos, e dá para parar no meio e continuar depois.</p>
+</section>
+
+<section>
+  <h2><span class="n">·</span> O que vai acontecer na tela</h2>
+  <ul class="checklist">
+    <li><span class="rot">Pedidos de autorização</span> Antes de rodar um comando ou ler uma pasta, o Claude pede sua permissão numa caixinha. É proteção do app. Pode aprovar. Se não entender o pedido, pergunte a ele "o que é isso?" antes.</li>
+    <li><span class="rot">Janelas do Mac</span> Pode aparecer uma janela do sistema pedindo para instalar algo, às vezes com a senha do computador. É do próprio Mac.</li>
+    <li><span class="rot">Links de pastas</span> Ele vai pedir os links de algumas pastas do Dropbox e do Drive (acervo, editais antigos, portfólio, logos). Copie pelo menu Compartilhar de cada pasta.</li>
+    <li><span class="rot">Códigos e logins</span> Em um momento ele mostra um código para você digitar no site do GitHub. É a forma oficial de confirmar que é você, parecida com o código que o banco manda.</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="n">·</span> Depois que estiver pronto</h2>
+  <p>No dia a dia é simples: abra o app na pasta do ambiente, escreva <strong>bom dia</strong> e trabalhe normalmente. No fim, escreva <strong>encerrar</strong>. Pode fechar a janela a qualquer momento, que nada se perde.</p>
+  <p>Para aprender a pedir as coisas, peça a ele: <strong>me mostra o guia de uso</strong>.</p>
+  <div class="nota">Travou, ficou confuso ou ele fez algo estranho? Chame o Rafael e conte o que aconteceu. É teste: apontar o que não funciona é a parte mais útil.</div>
+</section>
+
+<footer>LABVERDE · Experimentações artísticas na Amazônia</footer>
+
+</div>
+<script>
+function copiar(){
+  var t = document.getElementById('frase').innerText.trim();
+  var b = document.getElementById('btn');
+  navigator.clipboard.writeText(t).then(function(){
+    b.textContent = 'Copiado';
+    setTimeout(function(){ b.textContent = 'Copiar a frase'; }, 2200);
+  }).catch(function(){
+    b.textContent = 'Selecione e copie a frase acima';
+  });
+}
+</script>
+</body>
+</html>
