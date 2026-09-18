@@ -41,18 +41,18 @@
     background:var(--verde);color:var(--tinta);
     font-size:12px;text-transform:uppercase;letter-spacing:.14em;font-weight:700
   }
-  section{padding:34px 0;border-top:1px solid var(--linha)}
+  section{padding:30px 0;border-top:1px solid var(--linha)}
   h2{
     display:flex;align-items:center;gap:14px;
     font-size:13px;letter-spacing:.2em;text-transform:uppercase;
     margin:0 0 18px;font-weight:700
   }
-  h2 .n{
+  .n{
     flex:none;width:30px;height:30px;background:var(--verde);color:var(--tinta);
     display:inline-flex;align-items:center;justify-content:center;
-    font-size:14px;letter-spacing:0;border-radius:50%
+    font-size:14px;letter-spacing:0;border-radius:50%;font-weight:700
   }
-  h2 .n.ponto{background:none;border:1px solid var(--linha);color:var(--tinta-fraca)}
+  .n.ponto{background:none;border:1px solid var(--linha);color:var(--tinta-fraca)}
   p{margin:0 0 14px}
   ol,ul{margin:0 0 14px;padding-left:22px}
   li{margin-bottom:9px}
@@ -65,16 +65,58 @@
   }
   .nota strong{color:var(--tinta)}
   .atencao{border-left-color:#E0A526}
+
+  /* ---- painel de progresso ---- */
+  .progresso{
+    display:flex;align-items:center;gap:14px;flex-wrap:wrap;
+    background:var(--papel-2);border:1px solid var(--linha);border-left:3px solid var(--verde);
+    padding:15px 18px;margin:30px 0 0;font-size:15px;color:var(--tinta-fraca)
+  }
+  .progresso .conta{
+    font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;
+    color:var(--tinta);background:var(--verde);padding:5px 10px;white-space:nowrap
+  }
+  .progresso .texto{flex:1;min-width:14em}
+  .progresso .limpar{
+    background:none;border:none;padding:0;color:var(--tinta-fraca);
+    font-family:inherit;font-size:13px;cursor:pointer;border-bottom:1px solid var(--linha)
+  }
+  .progresso .limpar:hover{color:var(--tinta);border-bottom-color:var(--tinta)}
+
+  /* ---- passo com check e abre/fecha ---- */
+  .passo .cabecalho{display:flex;align-items:center;gap:14px;margin:0 0 18px}
+  .passo .ck{
+    flex:none;width:22px;height:22px;margin:0;cursor:pointer;
+    accent-color:var(--verde-escuro)
+  }
+  .passo .titulo{
+    flex:1;display:flex;align-items:center;gap:14px;
+    background:none;border:none;padding:0;margin:0;cursor:pointer;text-align:left;
+    font-family:inherit;font-size:13px;letter-spacing:.2em;text-transform:uppercase;
+    font-weight:700;color:var(--tinta)
+  }
+  .passo .titulo:hover{color:var(--verde-escuro)}
+  .passo .rotulo{flex:1}
+  .passo .seta{
+    flex:none;font-size:11px;color:var(--tinta-fraca);letter-spacing:0;
+    transition:transform .15s ease
+  }
+  .passo.fechado .seta{transform:rotate(-90deg)}
+  .passo.fechado .corpo{display:none}
+  .passo.feito .n{background:var(--verde-escuro);color:var(--papel-2)}
+  .passo.feito .titulo{color:var(--tinta-fraca)}
+  .passo.feito .rotulo{text-decoration:line-through;text-decoration-color:var(--linha)}
+
   .frase{
     background:var(--papel-2);border:1px solid var(--linha);
     padding:18px;margin:18px 0;font-size:15px;line-height:1.5;word-break:break-word
   }
-  button{
+  button.acao{
     background:var(--tinta);border:1px solid var(--tinta);color:var(--papel);
     font-family:inherit;font-size:12px;letter-spacing:.14em;text-transform:uppercase;
     font-weight:700;padding:11px 18px;cursor:pointer
   }
-  button:hover{background:var(--verde);border-color:var(--verde);color:var(--tinta)}
+  button.acao:hover{background:var(--verde);border-color:var(--verde);color:var(--tinta)}
   .cards{list-style:none;padding:0;margin:0}
   .cards li{
     background:var(--papel-2);border:1px solid var(--linha);
@@ -92,6 +134,7 @@
     body{font-size:16px}
     h1{font-size:28px}
     header{padding:44px 0 26px}
+    .passo .titulo{font-size:12px;letter-spacing:.14em}
   }
 </style>
 </head>
@@ -103,54 +146,94 @@
   <h1>Começando a <em>trabalhar</em> com o Claude</h1>
   <p class="sub">Um ambiente onde o Claude cuida de editais, conteúdo e propostas seguindo as regras da LabVerde. Esta página prepara o seu computador.</p>
   <div><span class="tempo">4 passos seus · cerca de 20 min · depois o Claude assume</span></div>
+  <div class="progresso">
+    <span class="conta" id="conta">0 de 5</span>
+    <span class="texto">Vá dando um check conforme for fazendo. O passo marcado fecha sozinho para não ocupar a tela, e é só clicar no título para abrir de novo. Pode fechar esta página e voltar depois: o que você marcou continua marcado.</span>
+    <button class="limpar" id="limpar" type="button">Desmarcar tudo</button>
+  </div>
 </header>
 
-<section>
-  <h2><span class="n">1</span> Conta no GitHub</h2>
-  <p><strong>Comece por aqui.</strong> É onde o ambiente fica guardado, e sem esse acesso nada é baixado. Depois você não precisa mexer nele: quem cuida é o Claude.</p>
-  <ol>
-    <li>Entre em <a href="https://github.com/signup">github.com/signup</a> e crie a conta com o seu e-mail de trabalho.</li>
-    <li>Escolha um nome de usuário simples, como <em>tammy-labverde</em>.</li>
-    <li>Confirme o e-mail que o GitHub envia.</li>
-    <li><strong>Mande o seu nome de usuário para o Rafael.</strong> Ele libera o seu acesso ao ambiente.</li>
-  </ol>
-  <div class="nota">Enquanto espera a liberação, siga para os passos 2, 3 e 4.</div>
+<section class="passo" data-passo="github">
+  <div class="cabecalho">
+    <input type="checkbox" class="ck" id="ck-github" aria-label="Marcar o passo 1 como feito">
+    <button class="titulo" type="button" aria-expanded="true">
+      <span class="n">1</span><span class="rotulo">Conta no GitHub</span><span class="seta">&#9662;</span>
+    </button>
+  </div>
+  <div class="corpo">
+    <p><strong>Comece por aqui.</strong> É onde o ambiente fica guardado, e sem esse acesso nada é baixado. Depois você não precisa mexer nele: quem cuida é o Claude.</p>
+    <ol>
+      <li>Entre em <a href="https://github.com/signup">github.com/signup</a> e crie a conta com o seu e-mail de trabalho.</li>
+      <li>Escolha um nome de usuário simples, como <em>tammy-labverde</em>.</li>
+      <li>Confirme o e-mail que o GitHub envia.</li>
+      <li><strong>Mande o seu nome de usuário para o Rafael.</strong> Ele libera o seu acesso ao ambiente.</li>
+    </ol>
+    <div class="nota">Enquanto espera a liberação, siga para os passos 2, 3 e 4.</div>
+  </div>
 </section>
 
-<section>
-  <h2><span class="n">2</span> Conta do Claude</h2>
-  <p>O Rafael te enviou <strong>um link de convite</strong> junto com esta página. Ele dá <strong>7 dias gratuitos</strong> do plano Pro, que é o necessário para esta fase de teste.</p>
-  <ol>
-    <li>Abra o link do convite que está no e-mail e crie a conta com o seu e-mail de trabalho.</li>
-    <li>Não precisa escolher plano nem pagar nada agora: o convite já libera o Pro por 7 dias.</li>
-  </ol>
-  <div class="nota atencao">Se o convite não abrir, avise o Rafael antes de assinar qualquer coisa por conta própria.</div>
+<section class="passo" data-passo="claude">
+  <div class="cabecalho">
+    <input type="checkbox" class="ck" id="ck-claude" aria-label="Marcar o passo 2 como feito">
+    <button class="titulo" type="button" aria-expanded="true">
+      <span class="n">2</span><span class="rotulo">Conta do Claude</span><span class="seta">&#9662;</span>
+    </button>
+  </div>
+  <div class="corpo">
+    <p>O Rafael te enviou <strong>um link de convite</strong> junto com esta página. Ele dá <strong>7 dias gratuitos</strong> do plano Pro, que é o necessário para esta fase de teste.</p>
+    <ol>
+      <li>Abra o link do convite que está no e-mail e crie a conta com o seu e-mail de trabalho.</li>
+      <li>Não precisa escolher plano nem pagar nada agora: o convite já libera o Pro por 7 dias.</li>
+    </ol>
+    <div class="nota atencao">Se o convite não abrir, avise o Rafael antes de assinar qualquer coisa por conta própria.</div>
+  </div>
 </section>
 
-<section>
-  <h2><span class="n">3</span> App do Claude no computador</h2>
-  <ol>
-    <li>Baixe em <a href="https://claude.ai/download">claude.ai/download</a> a versão para <strong>Mac</strong>.</li>
-    <li>Instale (arraste para a pasta Aplicativos) e entre com a mesma conta.</li>
-    <li>No topo do app existem abas. A que vamos usar chama-se <strong>Code</strong>.</li>
-  </ol>
+<section class="passo" data-passo="app">
+  <div class="cabecalho">
+    <input type="checkbox" class="ck" id="ck-app" aria-label="Marcar o passo 3 como feito">
+    <button class="titulo" type="button" aria-expanded="true">
+      <span class="n">3</span><span class="rotulo">App do Claude no computador</span><span class="seta">&#9662;</span>
+    </button>
+  </div>
+  <div class="corpo">
+    <ol>
+      <li>Baixe em <a href="https://claude.ai/download">claude.ai/download</a> a versão para <strong>Mac</strong>.</li>
+      <li>Instale (arraste para a pasta Aplicativos) e entre com a mesma conta.</li>
+      <li>No topo do app existem abas. A que vamos usar chama-se <strong>Code</strong>.</li>
+    </ol>
+  </div>
 </section>
 
-<section>
-  <h2><span class="n">4</span> Dropbox e contas do trabalho</h2>
-  <ol>
-    <li>Se o <strong>Dropbox</strong> não estiver instalado, baixe em <a href="https://dropbox.com/install">dropbox.com/install</a> e entre com a conta da LabVerde.</li>
-    <li>Deixe as pastas da LabVerde sincronizando no computador. Pode demorar; é só deixar rodando.</li>
-    <li>Tenha as senhas à mão: <strong>Google</strong> (a do Drive da LabVerde), <strong>Dropbox</strong> e <strong>Trello</strong>. Se você não tiver conta no Trello, o Claude ajuda a criar na hora, e é gratuita.</li>
-  </ol>
+<section class="passo" data-passo="dropbox">
+  <div class="cabecalho">
+    <input type="checkbox" class="ck" id="ck-dropbox" aria-label="Marcar o passo 4 como feito">
+    <button class="titulo" type="button" aria-expanded="true">
+      <span class="n">4</span><span class="rotulo">Dropbox e contas do trabalho</span><span class="seta">&#9662;</span>
+    </button>
+  </div>
+  <div class="corpo">
+    <ol>
+      <li>Se o <strong>Dropbox</strong> não estiver instalado, baixe em <a href="https://dropbox.com/install">dropbox.com/install</a> e entre com a conta da LabVerde.</li>
+      <li>Deixe as pastas da LabVerde sincronizando no computador. Pode demorar; é só deixar rodando.</li>
+      <li>Tenha as senhas à mão: <strong>Google</strong> (a do Drive da LabVerde), <strong>Dropbox</strong> e <strong>Trello</strong>. Se você não tiver conta no Trello, o Claude ajuda a criar na hora, e é gratuita.</li>
+    </ol>
+  </div>
 </section>
 
-<section>
-  <h2><span class="n">5</span> Agora é com o Claude</h2>
-  <p>Abra o app do Claude, vá na aba <strong>Code</strong> e, quando ele pedir uma pasta, escolha <strong>Documentos</strong>. Depois escreva na conversa exatamente esta frase:</p>
-  <div class="frase" id="frase">Leia este guia e siga as instruções: https://gist.githubusercontent.com/rcmarx/35f9fd12e53c9c41f479f232b7b97137/raw/INICIO.md</div>
-  <button onclick="copiar()" id="btn">Copiar a frase</button>
-  <p style="margin-top:22px">A partir daí ele conduz tudo: instala o que falta, conecta o Trello, o Google Drive e o Dropbox, pergunta onde ficam as pastas importantes e prepara o ambiente. São mais uns 30 minutos, e dá para parar no meio e continuar depois.</p>
+<section class="passo" data-passo="entrega">
+  <div class="cabecalho">
+    <input type="checkbox" class="ck" id="ck-entrega" aria-label="Marcar o passo 5 como feito">
+    <button class="titulo" type="button" aria-expanded="true">
+      <span class="n">5</span><span class="rotulo">Agora é com o Claude</span><span class="seta">&#9662;</span>
+    </button>
+  </div>
+  <div class="corpo">
+    <p>Abra o app do Claude, vá na aba <strong>Code</strong> e, quando ele pedir uma pasta, escolha <strong>Documentos</strong>. Depois escreva na conversa exatamente esta frase:</p>
+    <div class="frase" id="frase">Leia este guia e siga as instruções: https://gist.githubusercontent.com/rcmarx/35f9fd12e53c9c41f479f232b7b97137/raw/INICIO.md</div>
+    <button class="acao" onclick="copiar()" id="btn" type="button">Copiar a frase</button>
+    <p style="margin-top:22px">A partir daí ele conduz tudo: instala o que falta, conecta o Trello, o Google Drive e o Dropbox, pergunta onde ficam as pastas importantes e prepara o ambiente. São mais uns 30 minutos, e dá para parar no meio e continuar depois.</p>
+  </div>
 </section>
 
 <section>
@@ -174,6 +257,70 @@
 
 </div>
 <script>
+(function(){
+  var CHAVE = 'labverde-inicio-progresso';
+  var passos = Array.prototype.slice.call(document.querySelectorAll('.passo'));
+
+  function lerSalvos(){
+    try{
+      var bruto = localStorage.getItem(CHAVE);
+      return bruto ? JSON.parse(bruto) : {};
+    }catch(e){ return {}; }
+  }
+  function salvar(){
+    var estado = {};
+    passos.forEach(function(p){
+      estado[p.getAttribute('data-passo')] = p.querySelector('.ck').checked;
+    });
+    try{ localStorage.setItem(CHAVE, JSON.stringify(estado)); }catch(e){}
+  }
+  function abrirFechar(passo, aberto){
+    if (aberto){ passo.classList.remove('fechado'); } else { passo.classList.add('fechado'); }
+    passo.querySelector('.titulo').setAttribute('aria-expanded', aberto ? 'true' : 'false');
+  }
+  function contar(){
+    var feitos = 0;
+    passos.forEach(function(p){ if (p.querySelector('.ck').checked) feitos++; });
+    document.getElementById('conta').textContent = feitos + ' de ' + passos.length;
+  }
+
+  var salvos = lerSalvos();
+
+  passos.forEach(function(passo){
+    var ck = passo.querySelector('.ck');
+    var titulo = passo.querySelector('.titulo');
+
+    if (salvos[passo.getAttribute('data-passo')]){
+      ck.checked = true;
+      passo.classList.add('feito');
+      abrirFechar(passo, false);
+    }
+
+    ck.addEventListener('change', function(){
+      if (ck.checked){ passo.classList.add('feito'); } else { passo.classList.remove('feito'); }
+      abrirFechar(passo, !ck.checked);
+      contar();
+      salvar();
+    });
+
+    titulo.addEventListener('click', function(){
+      abrirFechar(passo, passo.classList.contains('fechado'));
+    });
+  });
+
+  document.getElementById('limpar').addEventListener('click', function(){
+    passos.forEach(function(passo){
+      passo.querySelector('.ck').checked = false;
+      passo.classList.remove('feito');
+      abrirFechar(passo, true);
+    });
+    contar();
+    salvar();
+  });
+
+  contar();
+})();
+
 function copiar(){
   var t = document.getElementById('frase').innerText.trim();
   var b = document.getElementById('btn');
