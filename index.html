@@ -6,87 +6,92 @@
 <title>LABVERDE · Começando com o Claude</title>
 <style>
   :root{
-    --preto:#000000;
+    --papel:#F6F4EC;
+    --papel-2:#FFFFFF;
+    --tinta:#14150F;
+    --tinta-fraca:#5C5E52;
     --verde:#BADA55;
-    --branco:#FFFFFF;
-    --superficie:#111111;
-    --superficie-2:#1A1A1A;
-    --borda:#2A2A2A;
-    --texto:rgba(255,255,255,0.78);
-    --texto-fraco:rgba(255,255,255,0.45);
+    --verde-escuro:#6F8A1E;
+    --linha:#E2DFD2;
   }
   *{box-sizing:border-box}
   body{
     margin:0;
-    background:var(--preto);
-    color:var(--texto);
+    background:var(--papel);
+    color:var(--tinta);
     font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;
     font-size:17px;
-    line-height:1.6;
+    line-height:1.65;
     -webkit-font-smoothing:antialiased;
   }
-  .wrap{max-width:760px;margin:0 auto;padding:0 20px 80px}
-  header{padding:56px 0 28px;border-bottom:1px solid var(--borda)}
+  .wrap{max-width:720px;margin:0 auto;padding:0 22px 72px}
+  header{padding:64px 0 34px}
   .marca{
-    font-size:13px;letter-spacing:.35em;text-transform:uppercase;
-    color:var(--verde);font-weight:700;margin:0 0 18px
+    font-size:12px;letter-spacing:.38em;text-transform:uppercase;
+    color:var(--verde-escuro);font-weight:700;margin:0 0 20px
   }
   h1{
-    font-size:34px;line-height:1.15;margin:0 0 14px;color:var(--branco);
-    text-transform:uppercase;letter-spacing:.02em;font-weight:700
+    font-size:36px;line-height:1.12;margin:0 0 16px;
+    text-transform:uppercase;letter-spacing:.01em;font-weight:700
   }
-  .sub{margin:0;color:var(--texto-fraco);font-size:16px}
+  h1 em{font-style:normal;background:linear-gradient(transparent 62%, var(--verde) 62%)}
+  .sub{margin:0;color:var(--tinta-fraca);font-size:17px;max-width:32em}
   .tempo{
-    display:inline-block;margin-top:22px;padding:7px 14px;border:1px solid var(--borda);
-    color:var(--texto-fraco);font-size:13px;text-transform:uppercase;letter-spacing:.12em
+    display:inline-block;margin-top:24px;padding:8px 14px;
+    background:var(--verde);color:var(--tinta);
+    font-size:12px;text-transform:uppercase;letter-spacing:.14em;font-weight:700
   }
+  section{padding:34px 0;border-top:1px solid var(--linha)}
   h2{
-    display:flex;align-items:baseline;gap:14px;
-    font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:var(--verde);
+    display:flex;align-items:center;gap:14px;
+    font-size:13px;letter-spacing:.2em;text-transform:uppercase;
     margin:0 0 18px;font-weight:700
   }
   h2 .n{
-    flex:none;width:30px;height:30px;border:1px solid var(--verde);border-radius:50%;
-    display:inline-flex;align-items:center;justify-content:center;font-size:14px;letter-spacing:0
+    flex:none;width:30px;height:30px;background:var(--verde);color:var(--tinta);
+    display:inline-flex;align-items:center;justify-content:center;
+    font-size:14px;letter-spacing:0;border-radius:50%
   }
-  section{padding:38px 0;border-bottom:1px solid var(--borda)}
-  section:last-of-type{border-bottom:none}
-  h3{font-size:18px;color:var(--branco);margin:26px 0 8px;font-weight:700}
+  h2 .n.ponto{background:none;border:1px solid var(--linha);color:var(--tinta-fraca)}
   p{margin:0 0 14px}
   ol,ul{margin:0 0 14px;padding-left:22px}
   li{margin-bottom:9px}
-  a{color:var(--verde);text-decoration:none;border-bottom:1px solid rgba(186,218,85,.35)}
-  a:hover{border-bottom-color:var(--verde)}
-  strong{color:var(--branco);font-weight:700}
+  a{color:var(--verde-escuro);text-decoration:none;border-bottom:1px solid rgba(111,138,30,.35)}
+  a:hover{border-bottom-color:var(--verde-escuro)}
+  strong{font-weight:700}
   .nota{
-    background:var(--superficie);border-left:2px solid var(--verde);
-    padding:16px 18px;margin:18px 0;font-size:15px
+    background:var(--papel-2);border:1px solid var(--linha);border-left:3px solid var(--verde);
+    padding:15px 18px;margin:18px 0;font-size:15px;color:var(--tinta-fraca)
   }
-  .atencao{border-left-color:#E8B84B}
+  .nota strong{color:var(--tinta)}
+  .atencao{border-left-color:#E0A526}
   .frase{
-    background:var(--superficie-2);border:1px solid var(--borda);
-    padding:18px;margin:18px 0;font-size:15px;line-height:1.5;
-    word-break:break-word;color:var(--branco)
+    background:var(--papel-2);border:1px solid var(--linha);
+    padding:18px;margin:18px 0;font-size:15px;line-height:1.5;word-break:break-word
   }
   button{
-    margin-top:14px;background:none;border:1px solid var(--verde);color:var(--verde);
+    background:var(--tinta);border:1px solid var(--tinta);color:var(--papel);
     font-family:inherit;font-size:12px;letter-spacing:.14em;text-transform:uppercase;
-    font-weight:700;padding:10px 16px;cursor:pointer
+    font-weight:700;padding:11px 18px;cursor:pointer
   }
-  button:hover{background:var(--verde);color:var(--preto)}
-  .checklist{list-style:none;padding:0}
-  .checklist li{
-    border:1px solid var(--borda);padding:14px 16px;margin-bottom:10px;background:var(--superficie)
+  button:hover{background:var(--verde);border-color:var(--verde);color:var(--tinta)}
+  .cards{list-style:none;padding:0;margin:0}
+  .cards li{
+    background:var(--papel-2);border:1px solid var(--linha);
+    padding:15px 18px;margin-bottom:10px
   }
-  .checklist .rot{
-    display:block;font-size:12px;letter-spacing:.14em;text-transform:uppercase;
-    color:var(--verde);margin-bottom:4px;font-weight:700
+  .cards .rot{
+    display:block;font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--verde-escuro);margin-bottom:5px;font-weight:700
   }
-  footer{padding:34px 0;color:var(--texto-fraco);font-size:14px}
+  footer{
+    padding:30px 0;border-top:1px solid var(--linha);
+    color:var(--tinta-fraca);font-size:13px;text-transform:uppercase;letter-spacing:.16em
+  }
   @media (max-width:600px){
     body{font-size:16px}
-    h1{font-size:27px}
-    header{padding:40px 0 22px}
+    h1{font-size:28px}
+    header{padding:44px 0 26px}
   }
 </style>
 </head>
@@ -94,15 +99,15 @@
 <div class="wrap">
 
 <header>
-  <p class="marca">LABVERDE</p>
-  <h1>Começando a trabalhar com o Claude</h1>
-  <p class="sub">Um ambiente onde o Claude cuida de editais, conteúdo e propostas seguindo as regras da LabVerde. Este guia prepara o seu computador.</p>
-  <span class="tempo">4 passos seus · cerca de 20 minutos · depois o Claude assume</span>
+  <p class="marca">LabVerde</p>
+  <h1>Começando a <em>trabalhar</em> com o Claude</h1>
+  <p class="sub">Um ambiente onde o Claude cuida de editais, conteúdo e propostas seguindo as regras da LabVerde. Esta página prepara o seu computador.</p>
+  <div><span class="tempo">4 passos seus · cerca de 20 min · depois o Claude assume</span></div>
 </header>
 
 <section>
   <h2><span class="n">1</span> Conta no GitHub</h2>
-  <p><strong>Comece por aqui.</strong> É onde o ambiente fica guardado, e sem esse acesso nada é baixado. Você não vai precisar mexer nele depois: quem cuida é o Claude.</p>
+  <p><strong>Comece por aqui.</strong> É onde o ambiente fica guardado, e sem esse acesso nada é baixado. Depois você não precisa mexer nele: quem cuida é o Claude.</p>
   <ol>
     <li>Entre em <a href="https://github.com/signup">github.com/signup</a> e crie a conta com o seu e-mail de trabalho.</li>
     <li>Escolha um nome de usuário simples, como <em>tammy-labverde</em>.</li>
@@ -149,8 +154,8 @@
 </section>
 
 <section>
-  <h2><span class="n">·</span> O que vai acontecer na tela</h2>
-  <ul class="checklist">
+  <h2><span class="n ponto">·</span> O que vai acontecer na tela</h2>
+  <ul class="cards">
     <li><span class="rot">Pedidos de autorização</span> Antes de rodar um comando ou ler uma pasta, o Claude pede sua permissão numa caixinha. É proteção do app. Pode aprovar. Se não entender o pedido, pergunte a ele "o que é isso?" antes.</li>
     <li><span class="rot">Janelas do Mac</span> Pode aparecer uma janela do sistema pedindo para instalar algo, às vezes com a senha do computador. É do próprio Mac.</li>
     <li><span class="rot">Links de pastas</span> Ele vai pedir os links de algumas pastas do Dropbox e do Drive (acervo, editais antigos, portfólio, logos). Copie pelo menu Compartilhar de cada pasta.</li>
@@ -159,13 +164,13 @@
 </section>
 
 <section>
-  <h2><span class="n">·</span> Depois que estiver pronto</h2>
+  <h2><span class="n ponto">·</span> Depois que estiver pronto</h2>
   <p>No dia a dia é simples: abra o app na pasta do ambiente, escreva <strong>bom dia</strong> e trabalhe normalmente. No fim, escreva <strong>encerrar</strong>. Pode fechar a janela a qualquer momento, que nada se perde.</p>
   <p>Para aprender a pedir as coisas, peça a ele: <strong>me mostra o guia de uso</strong>.</p>
   <div class="nota">Travou, ficou confuso ou ele fez algo estranho? Chame o Rafael e conte o que aconteceu. É teste: apontar o que não funciona é a parte mais útil.</div>
 </section>
 
-<footer>LABVERDE · Experimentações artísticas na Amazônia</footer>
+<footer>LabVerde · Experimentações artísticas na Amazônia</footer>
 
 </div>
 <script>
